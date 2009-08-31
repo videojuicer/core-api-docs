@@ -12,34 +12,35 @@ For details on how to retrieve lists of objects, refer to the [querying API][que
 Requests
 --------
 
-The URLs for all RESTful requests follow a common convention...
+The URLs for all RESTful requests follow a common convention (and always specify both a seed name and the required [API version][api_versions])...
 
 <table>
 	<tr><th>HTTP</th> <th>URL</th> <th>Action</th></tr>
 	<tr>
 		<td>POST</td>
-		<td>http://api.videojuicer.com/presentations.xml</td>
+		<td>http://api.videojuicer.com/presentations.xml?seed_name=myseed&amp;api_version=1</td>
 		<td>Creates a new presentation from the posted form data.</td>
 	</tr>
 	<tr>
 		<td>GET</td>
-		<td>http://api.videojuicer.com/presentations/52.xml</td>
+		<td>http://api.videojuicer.com/presentations/52.xml?seed_name=myseed&amp;api_version=1</td>
 		<td>Reads an existing presentation (ID 52).</td>
 	</tr>
 	<tr>
 		<td>PUT</td>
-		<td>http://api.videojuicer.com/presentations/52.xml</td>
+		<td>http://api.videojuicer.com/presentations/52.xml?seed_name=myseed&amp;api_version=1</td>
 		<td>Updates an existing presentation (ID 52).</td>
 	</tr>
 	<tr>
 		<td>DELETE <br /> GET</td>
-		<td>http://api.videojuicer.com/presentations/52.xml <br /> http://api.videojuicer.com/presentations/52/delete.xml</td>
+		<td>http://api.videojuicer.com/presentations/52.xml?seed_name=myseed&amp;api_version=1 <br /> http://api.videojuicer.com/presentations/52/delete.xml?seed_name=myseed&amp;api_version=1</td>
 		<td>Deletes an existing presentation (ID 52). The second method form exists to help with browsers / gateways that do not support the HTTP DELETE verb.</td>
 	</tr>
 </table>
 
 Since they modify an objects, create, update and delete actions will need to made as [authenticated requests][authenticated_requests]. This also applies to read requests that access objects with some degree of privacy or those requests that need access to attributes not normally vended to the public at large (such as the publishing dates on a presentation).
 
+[api_versions]: api_versions.html
 [authenticated_requests]: authenticated_requests.html
 
 Responses
