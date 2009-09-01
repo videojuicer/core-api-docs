@@ -25,12 +25,12 @@ Send a signed request to the Videojuicer 'request token endpoint' in order to re
 	Request token endpoint: http://api.videojuicer.com/oauth/tokens
 
 **2. [Obtain user authorization][user_authorisation_spec]**
-Use the the token received to derive a signed URL for the Videojuicer 'authorisation endpoint'. Redirect the user to this URL so that they can provide their credentials independent of your application. Remember to include an 'oauth_callback' parameter so that the authorisation endpoint knows which URL to redirect the user back to.
+Use the token received to derive a signed URL for the Videojuicer 'authorisation endpoint'. Redirect the user to this URL so that they can provide their credentials independent of your application. If your application is Web-based, remember to include an 'oauth_callback' parameter so that the authorisation endpoint knows which URL to redirect the user back to.
 
 	Authorisation endpoint: http://api.videojuicer.com/oauth/tokens/new
 
 **3. [Request the authorized access token][access_token_spec]**
-Once the user has returned to your application's callback URL, send a request signed (once again) with the unauthorized request token to the Videojuicer 'access token endpoint'. An authorized access token is returned. This access token may be used to sign all further requests, conferring the privileges available to the authorizing user.
+Once the user has returned to your application, send a request signed (once again) with the unauthorized request token to the Videojuicer 'access token endpoint'. An authorized access token is returned. This access token may be used to sign all further requests, conferring the privileges available to the authorizing user.
 
 	Access token endpoint: http://api.videojuicer.com/oauth/tokens
 
@@ -48,7 +48,8 @@ Now that your application is in possession of an authorized access token, the pr
 		http://api.videojuicer.com/presentations.json
 		seed_name=myseed
 		api_version=1
-		_...plus the form parameters for a presentation_
+		presentation[author]=John Mitchell
+		presentation[title]=Harmony
 
 2. Generate a signed request in accordance with [the most recent OAuth specification][oauth_spec]. Note that the current Videojuicer OAuth implementation supports 'HMAC-SHA1' and 'HMAC-MD5' signature methods (the former being preferred). As a quick example, here is some Ruby code for a non-multipart request...
 		normalized_params = [
@@ -58,7 +59,8 @@ Now that your application is in possession of an authorized access token, the pr
 			"oauth_singature_method=HMAC-SHA1",
 			"oauth_timestamp=1251757434",
 			"oauth_token=ha644gf5qbv1",
-			"presentation=#{CGI.escape('author=John%20Mitchell&title=Harmony')}",
+			"presentation%5Bauthor%5D=John%20Mitchell",
+			"presentation%5Btitle%5D=Harmony",
 			"seed_name=myseed"
 		]
 		signature_base_string = [
@@ -69,7 +71,7 @@ Now that your application is in possession of an authorized access token, the pr
 		signature_secret = "my_consumer_secret&authorized_token_secret"
 		signature_octet = HMAC::SHA1.digest(signature_secret, signature_base_string)
 		encoded_signature = signature_octet.pack("m").delete("\n")
-		normalized_params << encoded_signature
+		normalized_params << "oauth_signature=#{encoded_signature}"
 		query_string = normalized_params.sort.join("&")
 		final_request = {
 			:body => query_string,
@@ -92,7 +94,7 @@ When first [registering your application][consumer_registration], you will be pr
 **read-master** applications can read objects with the same permission as any user within the authorizing user's seed.
 **write-master** applications can read or write objects with the same permission as any user within the authorizing user's seed.
 
-It should be noted that only users with the 'administrator' role can authorize consumers which require read-master or write-master permissions. The first user in a seed always starts out with this role.
+It should be noted that only users with the 'administrator' role can authorize consumers that require read-master or write-master permissions. The first user in a seed always starts out with this role.
 
 Read-master and write-master permissions are primarily intended for applications such as Videojuicer's own Management Panel application. These sorts of applications provide pass-through authorization of individual users once they're up and running. Hence they need to be initially authorized once, for an entire seed, by a single administrator. Most applications such as upload, export or production workflow tools should only require read-user or write-user permissions.
 
