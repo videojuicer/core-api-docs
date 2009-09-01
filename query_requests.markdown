@@ -1,7 +1,7 @@
 Query Requests
 ==============
 
-The Videojuicer core API provides a unified mechanism for reqesting (optionally filtered) lists of objects and conventions for determining their collation and pagination.
+The Videojuicer core API provides a unified mechanism for requesting (optionally filtered) lists of objects and conventions for determining their collation and pagination.
 
 Requests
 --------
@@ -25,15 +25,15 @@ The filtering operations available are...
 * equals...
 	presentation[title]=Harmony
 * does not equal...
-	presentation[title]=Melody.not,Rhapsody.not
+	presentation[title.not]=Melody,Rhapsody
 * like (supporting the use of escaped '%' characters as wildcards)...
-	presentation[title]=Harm%25.like
+	presentation[title.like]=Harm%25
 * greater than (or equal to)...
-	presentation[created_at]=2005-05-10.gt
-	presentation[created_at]=2005-05-09.gte
+	presentation[created_at.gt]=2005-05-10
+	presentation[created_at.gte]=2005-05-09
 * less than (or equal to)...
-	presentation[created_at]=2005-05-07.lt
-	presentation[created_at]=2005-05-08.lte
+	presentation[created_at.lt]=2005-05-07
+	presentation[created_at.lte]=2005-05-08
 	
 The collation/pagination operations available are...
 
