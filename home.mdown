@@ -1,8 +1,9 @@
 Videojuicer Core API
 ====================
 
-The Videojuicer core API is a RESTful interface to the various objects modelled by the Videojuicer service. Through [requests][requests] made to this service, your application can build upon Videojuicer's scalable hosting, manipulation, selection, authorization, monetization and monitoring of on-line video and other digital assets.
+The Videojuicer core API is a RESTful interface to the [various objects][objects] modelled by the Videojuicer service. Through [requests][requests] made to this service, your application can build upon Videojuicer's scalable hosting, manipulation, selection, authorization, monetization and monitoring of on-line video and other digital assets.
 
+[objects]: objects/index.html
 [requests]: requests.html
 
 Getting Started
@@ -16,7 +17,7 @@ All of the assets, campaign rules, users and other mainstays of the Videojuicer 
 
 **2. The Consumer Key**
 
-In order to make changes to the various objects contained within a seed (or to secure access to private content), your application needs to make [authenticated requests][authenticated_requests]. One of the fundamental parameters involved in such requests is a 'consumer key', which you may acquire by [registering your application][consumer_registration].
+In order to make changes to the [objects][objects] contained within a seed (or to secure access to private content), your application needs to make [authenticated requests][authenticated_requests]. One of the fundamental parameters involved in such requests is a 'consumer key', which you may acquire by [registering your application][consumer_registration].
 
 **3. Start Making Requests**
 
