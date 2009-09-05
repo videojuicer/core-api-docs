@@ -217,13 +217,15 @@ The REST endpoints for assets are type-specific. This is becase the unique ident
 Other than this specific consideration, REST requests / responses work exactly as described in [requests][requests].
 
 * create: POST file (and optionally the file_name, the various licensed_* attributes and a state_changed_url) to...
-	http://api.videojuicer.com/assets_audio
+	http://api.videojuicer.com/assets_audio.json
 * read: GET from...
-	http://api.videojuicer.com/assets_audio/47
+	http://api.videojuicer.com/assets_audio/47.json
 * update: PUT any of the various licensed_* attributes and/or a new state_changed_url to...
-	http://api.videojuicer.com/assets_audio/47
+	http://api.videojuicer.com/assets_audio/47.json
 * delete: DELETE from...
-	http://api.videojuicer.com/assets_audio/47
+	http://api.videojuicer.com/assets_audio/47.json
+	
+Note that the assets interface supports the validation methods described in [requests][requests] with the additional feature that no file need be presented (so that validation can be achieved without a bandwidth-consuming upload).
 
 [requests]: requests.html
 

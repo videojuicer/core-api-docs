@@ -43,6 +43,11 @@ Many browsers and gateways have limited HTTP verb support (particularly where PU
 
 Since they modify an object, create, update and delete actions will need to made as [authenticated requests][authenticated_requests]. This also applies to read requests that access objects with some degree of privacy or those requests that need access to attributes not normally vended to the public at large (such as the publishing dates on a presentation).
 
+Note also that all core objects support validation without creation / modification. This is useful in testing whether a POST / PUT would succeed if it were to be attempted. The API for validating creates and updates operates exactly as above except that the endpoints look like this...
+
+	http://api.videojuicer.com/presentations/validate.json (POST)
+	http://api.videojuicer.com/presentations/12/validate.json (PUT)
+
 [api_versions]: api_versions.html
 [authenticated_requests]: authenticated_requests.html
 
