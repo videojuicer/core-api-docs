@@ -217,20 +217,20 @@ The REST endpoints for assets are type-specific. This is becase the unique ident
 Other than this specific consideration, REST requests / responses work exactly as described in [requests][requests].
 
 * create: POST file (and optionally the file_name, the various licensed_* attributes and a state_changed_url) to...
-	http://api.videojuicer.com/assets_audio.json
+	http://api.videojuicer.com/assets_audio.json?seed_name=myseed&api_version=1
 * read: GET from...
-	http://api.videojuicer.com/assets_audio/47.json
+	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
 * update: PUT any of the various licensed_* attributes and/or a new state_changed_url to...
-	http://api.videojuicer.com/assets_audio/47.json
+	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
 * delete: DELETE from...
-	http://api.videojuicer.com/assets_audio/47.json
+	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
 	
 Note that the assets interface supports the validation methods described in [requests][requests] with the additional feature that no file need be presented (so that validation can be achieved without a bandwidth-consuming upload).
 
 [requests]: requests.html
 
-Other Requests
---------------
+Derivation Request
+------------------
 
 The Videojuicer service offers the ability to transform assets on your behalf, transcoding a video file or extracting the audio track from a video and so on. Before your application can request a derived asset, it must first have knowledge of two objects...
 
@@ -238,7 +238,8 @@ The Videojuicer service offers the ability to transform assets on your behalf, t
 * a valid [preset][preset]
 
 To request a derived asset, simple POST the preset ID to the original asset's end point...
-	http://api.videojuicer.com/assets_audio/47
+
+	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
 	
 Assuming that the original asset and the specified preset both exist _and_ do not (in combination) imply an unsupported transformation, a new asset will be created and returned (with the usual 'pending' state). The backend transformation pipeline will then activate and deliver the derived asset's data as quickly as possible, updating the asset's state as it goes (see 'Lifecycle' above).
 
