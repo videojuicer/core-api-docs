@@ -94,7 +94,7 @@ Whilst all of the following attributes may be set at creation time (save for ID,
 RESTful Requests
 ----------------
 
-REST requests / responses work exactly as described in [requests][requests].
+REST requests / responses work exactly as described in [requests][requests]...
 
 * create: POST name, derived_type and file_format (and optionally any of the asset-apecific attributes above) to...
 	http://api.videojuicer.com/presets.json?seed_name=myseed&api_version=1
