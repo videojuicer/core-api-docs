@@ -213,22 +213,22 @@ RESTful Requests
 
 The REST endpoints for assets are type-specific. This is becase the unique identifier for an asset within a seed is the combination of its type _and_ its ID. Thus the lead portion of the URLs for each type are of this form...
 
-	http://api.videojuicer.com/assets_audio
-	http://api.videojuicer.com/assets_flash
-	http://api.videojuicer.com/assets_image
-	http://api.videojuicer.com/assets_text
-	http://api.videojuicer.com/assets_video
+	http://api.videojuicer.com/assets/audio
+	http://api.videojuicer.com/assets/flash
+	http://api.videojuicer.com/assets/image
+	http://api.videojuicer.com/assets/text
+	http://api.videojuicer.com/assets/video
 
 Other than this specific consideration, REST requests / responses work exactly as described in [requests][requests]...
 
 * create: POST file (and optionally the file_name, the various licensed_* attributes and a state_changed_url) to...
-	http://api.videojuicer.com/assets_audio.json?seed_name=myseed&api_version=1
+	http://api.videojuicer.com/assets/audio.json?seed_name=myseed&api_version=1
 * read: GET from...
-	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
+	http://api.videojuicer.com/assets/audio/47.json?seed_name=myseed&api_version=1
 * update: PUT any of the various licensed_* attributes and/or a new state_changed_url to...
-	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
+	http://api.videojuicer.com/assets/audio/47.json?seed_name=myseed&api_version=1
 * delete: DELETE from...
-	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
+	http://api.videojuicer.com/assets/audio/47.json?seed_name=myseed&api_version=1
 	
 Note that the assets interface supports the validation methods described in [requests][requests] with the additional feature that no file need be presented (so that validation can be achieved without a bandwidth-consuming upload).
 
@@ -244,7 +244,7 @@ The Videojuicer service offers the ability to transform assets on your behalf, t
 
 To request a derived asset, simple POST the preset ID to the original asset's end point...
 
-	http://api.videojuicer.com/assets_audio/47.json?seed_name=myseed&api_version=1
+	http://api.videojuicer.com/assets/audio/47.json?seed_name=myseed&api_version=1
 	
 Assuming that the original asset and the specified preset both exist _and_ do not (in combination) imply an unsupported transformation, a new asset will be created and returned (with the usual 'pending' state). The backend transformation pipeline will then activate and deliver the derived asset's data as quickly as possible, updating the asset's state as it goes (see 'Lifecycle' above).
 
