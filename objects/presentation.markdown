@@ -57,7 +57,7 @@ The following attributes encapsulate the non-document metadata about a presentat
 	<tr>
 		<td>callback_url</td>
 		<td>http://myproduct.com</td>
-		<td>The URL to which you'd like viewers to be sent when the presentation stage is clicked.</td>
+		<td>The URL to which end-users will be sent when the presentation stage is clicked.</td>
 	</tr>
 	<tr>
 		<td>image_asset_id</td>
@@ -101,59 +101,28 @@ Note that presentations, as embeddable objects, can return HTML or SMIL format r
 OEmbed Requests
 ---------------
 
-HTML Embed codes for individual presentations may be obtained by using the Videojuicer [OEmbed][oembed] endpoint. To obtain an embed code, first take the resource URL for the presentation you wish to embed:
+HTML snippets for embedding individual presentations may be obtained by using the Videojuicer [OEmbed][oembed] endpoint. To obtain one of these 'embed codes', first take the resource URL of the presentation to be embedded...
 
 	http://api.videojuicer.com/presentations/47.json?seed_name=myseed&api_version=1
 	
-Once you have the presentation URL, build a request to the OEmbed endpoint:
+Armed with this URL, build a request to the OEmbed endpoint...
 
 	http://api.videojuicer.com/oembed
 	
-Make sure to include the following parameters:
+...ensuring that the following parameters are included...
 
-<table>
-	<tr>
-		<th>Parameter</th>
-		<th>Example</th>
-		<th>Notes</th>
-	</tr>
-	<tr>
-		<td>url</td>
-		<td>http%3A%2F%2Fapi.videojuicer.com%2Fpresentations%2F47.json%3Fseed_name%3Dmyseed%26api_version%3D1</td>
-		<td>The CGI-escaped presentation URL</td>
-	</tr>
-	<tr>
-		<td>seed_name</td>
-		<td>myseed</td>
-		<td>As with all calls to the API, the seed_name is a required parameter.</td>
-	</tr>
-	<tr>
-		<td>api_version</td>
-		<td>1</td>
-		<td>As with all calls to the API, the api_version is a required parameter.</td>
-	</tr>
-	<tr>
-		<td>maxwidth</td>
-		<td>700</td>
-		<td>The maximum desired width for the returned embed code.</td>
-	</tr>
-	<tr>
-		<td>maxheight</td>
-		<td>700</td>
-		<td>The maximum desired height for the returned embed code.</td>
-	</tr>
-	<tr>
-		<td>format</td>
-		<td>json</td>
-		<td>Either "json" or "xml". The OEmbed output will be returned in the specified format.</td>
-	</tr>
-</table>
+* url: a CGI-escaped version of the presentation URL (above)
+* maxwidth: the maximum desired width for the embedded presentation's thumbnail (if available)
+* maxheight: the maximum desired height for the embedded presentation's thumbnail (if available)
+* format: the required response format (either 'json' or 'xml)
+* api_version: the Videojuicer API version (required, as always)
+* seed_name: the seed name (required, as always)
 
-A properly-created OEmbed URL will look something like:
+Thus a valid OEmbed URL constructed along these lines will resemble the following...
 
 	http://api.videojuicer.com/oembed?format=json&seed_name=myseed&api_version=1&maxwidth=650&maxheight=400&url=http%3A%2F%2Fapi.videojuicer.com%2Fpresentations%2F47.json%3Fseed_name%3Dmyseed%26api_version%3D1
 	
-All responses from the OEmbed endpoint conform to the OEmbed 1.0 specification for the 'video' media type. The output for a call similar to the one outlined above will look like this:
+All responses from the OEmbed endpoint conform to the OEmbed 1.0 specification for the 'video' media type. The output for a call similar to the one outlined above will look like the following sample. Note the 'html' attribute containing the actal embed snippet.
 
 	{
 		"title": "Example presentation",
@@ -173,8 +142,6 @@ All responses from the OEmbed endpoint conform to the OEmbed 1.0 specification f
 		"html": "<object width= "650 " height= "366 "> <param name= "movie " value= "http: / /player.videojuicer.com /bootstrap.swf "  /> <param name= "allowFullScreen " value= "true "  /> <param name= "allowscriptaccess " value= "always "  /> <param name= "FlashVars " value= "seed_name=demo&presentation_id=10 "  /> <embed src= "http: / /player.videojuicer.com /bootstrap.swf " type= "application /x-shockwave-flash " allowscriptaccess= "always " allowfullscreen= "true " FlashVars= "seed_name=demo&presentation_id=10 " width= "650 " height= "366 "  /> < /object> <a href= "http: / /api.videojuicer.com /presentations /10.html?seed_name=demo ">Example presentation on Videojuicer< /a>"
 	}
 	
-The "html" value is the embed code that may be distributed.
-
 [oembed]: http://oembed.com/
 
 Related Presentation Requests
@@ -191,11 +158,11 @@ Don't forget that (as per [the query request documentation][query_requests]), pa
 SMIL Document Workflow
 ======================
 
-Presentation content is managed using a flexible markup language called <abbr title="Synchronized Multimedia Integration Languag">[SMIL][smil]</abbr>.
+Presentation content is managed using the flexible markup language <abbr title="Synchronized Multimedia Integration Language">[SMIL][smil]</abbr>.
 
-SMIL is an XML lingua that allows you to describe complex arrangements of assets in both time and space. The Videojuicer player is designed to consume presentations written using the SMIL language. The Videojuicer API also makes use of the [Liquid templating language][liquid] to render SMIL documents at request time, allowing for on-the-fly customisation of your presentations.
+SMIL is an XML lingua that allows for the description of complex arrangements of assets and their placement in both time and space. Making use of the [Liquid templating language][liquid], the Videojucier service renders presentations as SMIL documents at request time, allowing for on-the-fly customisation to take place. In turn, the Videojuicer player consumes and renders these documents, delivering primary and promotional content to end-users.
 
-Much like an HTML document, a SMIL document is broken into "head" and "body" sections, containing metadata and content respectively. Here's a very simple example SMIL document that contains a single video with a title and description:
+A SMIL document is broken into 'head' and 'body' sections, containing metadata and content respectively. The following is a simple SMIL document for presenting a single video...
 
 	<smil>
 		<head>
@@ -207,7 +174,7 @@ Much like an HTML document, a SMIL document is broken into "head" and "body" sec
 		</body>
 	</smil>
 	
-The SMIL standard also allows for placing 'regions' on the stage. Regions are independent areas of the player stage that can contain their own assets. Let's extend our simple SMIL document with a _layout_ and some more video files:
+The SMIL standard supports the concept of 'regions'. Regions are independent areas of the player stage that can contain their own assets. Extending the previous document to include two regions (and some other constructs) yields...
 
 	<smil>
 		<head>
@@ -231,154 +198,85 @@ The SMIL standard also allows for placing 'regions' on the stage. Regions are in
 		</body>
 	</smil>
 	
-Here's what we added:
+The additional constructs comprise...
 
-* A _layout_ defined inside the &lt;head&gt; tag. It contains a region named 'root', which fills the stage completely, and another region named 'overlay' which has a fixed size of 40x40 pixels, which sits 5 pixels from the bottom edge of the player and 5 pixels from the left. The z-index attribute sets the stacking order of the regions, ensuring that the overlay will always display on top of the root region.
-* Some _extra assets_. Within the body we've added another video file, and hyperlink containing an image. As you can see, linking from a SMIL document works along much the same lines as linking in HTML. The assets now have a 'region' attribute set. Note that the two video files are set to appear in the root region, while the button is assigned to the overlay in the bottom-left corner.
-* Some _timing tags_. Within the body of the above document, you can see that all the content is included in a 'par' tag, and the two videos are included in a 'seq'. In a SMIL document, these two tags are used to control the flow of time within a presentation. Any content contained within a 'par' tag will play in parallel, starting at the same base time. Any content contained within a 'seq' tag will play sequentially, starting one after the other. The behaviour described in the above document has a sequence of two videos playing while an image is displayed to the user. Both videos will play in sequence, and the image will be overlayed in the bottom-left corner for the entire duration of the presentation. Seq and par tags may be nested within each other to create presentations that are as simple or complicated as you require them to be.
+* A _layout_ defined inside the 'head' tag. This layout contains a region named 'root', which fills the stage completely, and another region named 'overlay' which has a fixed size of 40x40 pixels and sits 5 pixels from the bottom and left-hand edges of the player. The 'z-index' attribute determines the stacking order of the regions, ensuring that the overlay will always display on top of the root region.
+* An additional video file and a hyperlink containing an image (which is notably similar in form to its HTML equivalent). All of the assets have their 'region' attributes set. As a result, the two video files will appear in the root region whilst the button is assigned to the overlay in the bottom-left corner.
+* Some _timing tags_. The body of the document now contains a 'par' tag, and a child 'seq' tag holding the two videos. These two tags are used to control the flow of time within a presentation. Any assets within the 'par' tag will play in parallel, starting at the same base time. Any content contained within the 'seq' tag will play sequentially. Thus the document now describes a sequence of two videos playing sequentially with an overlay image displayed throughout.
 
-To read more about the tags and features available in the SMIL language, please see the [SMIL 3.0 specification][smil]. The Videojuicer player does not currently support all aspects of the 3.0 specification such as relative timing and the SMIL event model, but all basic timing and layout controls are supported.
+To learn more about the SMIL language, please see the [SMIL 3.0 specification][smil]. The Videojuicer player does not currently implement all aspects of the 3.0 specification (such as relative timing and the SMIL event model). However, all basic timing and layout controls are supported.
 
-Using SMIL in your presentations
---------------------------------
+[smil]: http://www.w3.org/TR/SMIL/
 
-The SMIL document rendered by a presentation is defined by two attributes on the presentation itself:
+Using SMIL in Presentations
+---------------------------
 
-<table>
-	<tr>
-		<th>Attribute</th>
-		<th>Notes</th>
-	</tr>
-	<tr>
-		<td>document_content</td>
-		<td>The content of the SMIL document. Everything intended to go within the &lt;body&gt; tag, not including the &lt;body&gt; itself, should be set as the value of this attribute.</td>
-	</tr>
-	<tr>
-		<td>document_layout</td>
-		<td>Optional. The core API defines a default SMIL layout that by default will include presentation metadata and any assets defined in your Campaign settings. Leaving this attribute blank will cause the core API to use the default layout when your SMIL document is rendered. In most cases, you will not use this attribute. However if you wish to create fully customised SMIL documents then you may set it on a per-presentation basis. Be sure to include the {{content}} template variable in your layout, as this will be replaced with the contents of the document_content attribute when the presentation is rendered.</td>
-	</tr>
-</table>
+As implied in 'Attributes' above, the SMIL document delivered for a presentation is constructed using two key attributes on the presentation itself...
 
-Getting SMIL output
--------------------
+* document_content: all of the code destined for the 'body' section of the document
+* document_layout: an optional attribute allowing for the definition of completely bespoke SMIL documents
 
-To retrieve a SMIL representation of any presentation, make a request to a URL like so:
+If no document_layout is specified, the Videojuicer service will employ a default one that includes the presentation's metadata and the assets / promos defined by the relevant [campaign][campaigns] settings.
 
-	http://api.videojuicer.com/presentations/47.smil?seed_name=myseed
-	
-Lists of presentations may also be rendered as SMIL documents:
+When creating bespoke SMIL documents, remember to include the '{{content}}' template variable in the layout to allow the document_content to be inserted when the presentation is rendered.
 
-	http://api.videojuicer.com/presentations.smil?seed_name=myseed&presentation[limit]=20&....
+[campaigns]: objects/campaings.html
 
-Liquid template helpers
+Liquid Template Helpers
 -----------------------
 
-When a request for SMIL content is received by the core API, the document layout and content attributes are rendered using the [Liquid][liquid] templating system, allowing presentations to differ from request to request.
+As discussed, SMIL document rendering is based on the [Liquid][liquid] templating system, allowing presentations to differ from request to request.
 
-Variables can be included in document output by wrapping them in {{two curly braces}}. The following variables are available to presentations when rendered:
+Variables can be included in document output by wrapping them in {{two curly braces}}. The following variables are available to presentations when rendered...
 
-<table>
-	<tr>
-		<th>Variable</th>
-		<th>Notes</th>
-	</tr>
-	<tr>
-		<td>title</td>
-		<td>The value of the 'title' attribute on the presentation.</td>
-	</tr>
-	<tr>
-		<td>abstract</td>
-		<td>The value of the 'abstract' attribute on the presentation.</td>
-	</tr>
-	<tr>
-		<td>author</td>
-		<td>The value of the 'author' attribute on the presentation.</td>
-	</tr>
-	<tr>
-		<td>author_url</td>
-		<td>The value of the 'author_url' attribute on the presentation.</td>
-	</tr>
-	<tr>
-		<td>promos</td>
-		<td>An object containing the promos that are eligible for display based on the current request, keyed by promo role. For instance, {{promos.preroll}} will return an array of promos intended to display before the presentation begins. For a complete list of roles available to promos, see the Promo documentation. You may also call {{promos.preroll.pick_random}} to randomly select a single promo from the list.</td>
-	</tr>
-	<tr>
-		<td>content</td>
-		<td>Only available to the document_layout. Contains the rendered value of the document_content attribute.</td>
-	</tr>
-</table>
+* title, abstract, author and author_url: the values of these presentation attributes
+* promos: an hash eligible [promos][promos], keyed by promo role
+* content: the _rendered_ value of the document_content attribute (only availble when rendering the document_layout)
 
-Additionally, all asset and promo objects available to your template gain an additional property:
+Each promo value is an array of eligible promos. Thus {{promos.preroll}} will return the set of promos intended to display before the presentation begins. A random promo can be picked by invoking the 'pick_random' method on the promo array: {{promos.preroll.pick_random}}.
 
-<table>
-	<tr>
-		<th>Property</th>
-		<th>Notes</th>
-	</tr>
-	<tr>
-		<td>smil_fragment</td>
-		<td>Can be called against any asset or promo object. Renders a valid SMIL reference to the given object. For instance, {{promos.preroll.pick_random.smil_fragment}} will return a SMIL asset tag referencing the chosen preroll asset, if one exists See Appendix A for more usage examples.</td>
-	</tr>
-</table>
+Additionally, all asset and promo objects gain an additional 'smil_fragment' property. This renders a SMIL reference to the particular object so that {{promos.preroll.pick_random.smil_fragment}} will return a SMIL asset tag referencing the picked preroll asset (if such an asset exists).
 
-Rendering assets using Liquid
------------------------------
-
-The core API also provides a series of template helpers for rendering assets into your presentations. To render the video asset with ID 10, we'd simply enter:
+The Videojuicer service provides a series of template helpers for rendering assets into presentations. The following snippet renders the video asset with ID 10...
 
 	{% video %}{% id 10 %}{% endvideo %}
 	
-This would output the _smil fragment_ for the asset:
-
-	<video src="http://path/to/video/asset/10" dur="120s" region="root" />
-	
-You may also override attributes on the asset tag by adding them to your template call:
+SMIL attributes on the asset tag may be overridden by adding them to the template call...
 
 	{% video %}{% id 10 %}{% region "overlay" %}{% endvideo %}
 
-The same premise applies to assets of all other types:
+Naturally, this approach works with all of the Videojuicer asset types (audio, Flash, image, text and video).
 
-	{% audio %}{% id 120 %}{% endaudio %}
-	{% text %}{% id 11 %}{% endtext %}
-	{% flash %}{% id 3 %}{% endflash %}
-	{% image %}{% id 107 %}{% endimage %}
-
-Therefore the simplest possible playable presentation can be created by following this simple workflow:
-
-1. Create a Video asset and note the ID of the returned object
-2. Create a presentation, setting the document_content attribute to:
-
-	{% video %}{% id id_of_your_asset %}{% endvideo %}
-
-3. There is no step three.
-
-[smil]: http://www.w3.org/TR/SMIL/
 [liquid]: http://www.liquidmarkup.org/
-[promo_roles]: http://TODO
+[promos]: objects/promos.html
 
-Sharing presentations to social networks
-----------------------------------------
+Publishing Presentations To Social Networks
+-------------------------------------------
 
-By default, the Videojuicer player allows users to share presentations through a number of social networks including Facebook. If your custom application has a special workflow for sharing presentations, then you should read the following best practice passages for taking advantage of Videojuicer's social integration features. 
+By default, the Videojuicer player allows users to share presentations through a number of social networks such as [Facebook][facebook]. The following best-practice guide addresses those applications with specialized requirements in this area.
 
-In most cases, all that a social network requires in order to share any item with another user is a URL to which the user's friends will be linked. Further to this, many social networks such as Facebook, Digg, and Reddit actually inspect pages when they are shared, attempting to grab useful data such as thumbnails and, in our case, embed codes for video.
+In most cases, all that a social network requires in order to share any item with another user is a URL to which the user's friends will be linked. Furthermore, many social networks such as [Facebook][facebook], [Digg][digg], and [Reddit][reddit] perform inspections of shared pages, attempting to extract useful data such as thumbnails and embed codes for video.
 
-For this reason, the core API offers a _discovery URL_ for each presentation:
+For this reason, the Vdeojuicer service offers a _discovery URL_ for each presentation...
 
 	http://api.videojuicer.com/presentations/10.html?seed_name=myseed
 	
-Whenever the in-player sharing features are used, it is actually this discovery URL that is shared with the social networks. It is recommended that whenever you wish to link to a presentation in a sharable fashion, you give out the discovery URL rather than the URL of a page where you have previously embedded the presentation.
+Whenever the in-player sharing features are used, it is this URL that is shared with the appropriate social network. Accordingly, it is highly recommended that your application distribute this discovery URL rather than the URL of a page where the presentation has previously been embedded.
 
-The discovery URL behaves as follows:
+The discovery endpoint behaves as follows...
 
-* If the presentation has a callback_url set:
-	* Users will be redirected to the callback_url
-	* Search engines will be permanently redirected to the callback_url, ensuring that shared links still contribute to your page rankings.
-	* Social networks searching for metadata will be presented with a specially-crafted page containing everything the social network needs to embed your presentation.
-* If the presentation has *no* callback_url set:
-	* The discovery URL will behave the same as above, but users visiting the page directly will be shown a very simple white page containing the embedded presentation.
+* If the presentation has a callback_url set...
+	* Users will be redirected to the callback_url.
+	* Search engines will be permanently redirected to the callback_url, ensuring that shared links still contribute to page rankings.
+	* Social networks searching for metadata will be presented with a specially-crafted page containing everything required for that network to embed your presentation.
+* If the presentation has no callback_url set...
+	* Users and search engines visiting the endpoint directly will be shown a very simple white page containing the embedded presentation.
+	
+[facebook]: http://www.facebook.com/
+[digg]: http://www.digg.com/
+[reddit]: http://www.reddit.com/
 
-Appendix A: Default SMIL document layout
+Appendix A: Default SMIL Document Layout
 ----------------------------------------
 
 <p>If the document_layout attribute is left blank, the following template will be used. Note the use of the {{content}} variable which is replaced with the value of the document_content attribute at render time.</p>
@@ -446,6 +344,3 @@ Appendix A: Default SMIL document layout
       </par>
     </body>
 	</smil>
-
-TODO: How to mock request properties for purposes of promo rendering
-TODO: Fix link to promo role values
