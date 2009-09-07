@@ -22,7 +22,7 @@ The following attributes encapsulate the non-document metadata about a presentat
 	<tr>
 		<td>user_id</td>
 		<td>47</td>
-		<td>The ID of the creating user. This may be set/updated directly only by applications with 'write-master' privileges.</td>
+		<td>The ID of the creating user. This attribute may be set/updated directly only by applications with 'write-master' privileges.</td>
 	</tr>
 	<tr>
 		<td>created_at</td>
