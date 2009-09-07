@@ -17,7 +17,7 @@ Whilst all of the following attributes may be set at creation time (save for ID,
 	<tr>
 		<td>id</td>
 		<td>12</td>
-		<td>System-assigned auto-ID.</td>
+		<td>System-assigned auto-ID. This attribute cannot be set/updated.</td>
 	</tr>
 	<tr>
 		<td>name</td>
@@ -32,12 +32,12 @@ Whilst all of the following attributes may be set at creation time (save for ID,
 	<tr>
 		<td>created_at</td>
 		<td>2009-01-01T06:01:18+0000</td>
-		<td>The timestamp indicating when the preset was originally created.</td>
+		<td>The timestamp indicating when the preset was originally created. This attribute cannot be set/updated directly.</td>
 	</tr>
 	<tr>
 		<td>updated_at</td>
 		<td>2009-01-02T06:10:51+0000</td>
-		<td>The timestamp indicating when the preset was last updated (i.e. renamed).</td>
+		<td>The timestamp indicating when the preset was last updated (i.e. renamed). This attribute cannot be set/updated directly.</td>
 	</tr>
 	<tr>
 		<td>file_format</td>

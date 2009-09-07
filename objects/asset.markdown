@@ -55,7 +55,7 @@ The following attributes are common to all asset types...
 	<tr>
 		<td>state_changed_at</td>
 		<td>2009-01-02T05:52:12+0000</td>
-		<td>The timestamp of the last time the asset's state changed (initially nil). This attribute cannot be set/updated.</td>
+		<td>The timestamp of the last time the asset's state changed (initially nil). This attribute cannot be set/updated directly.</td>
 	</tr>
 	<tr>
 		<td>state_changed_url</td>
@@ -90,12 +90,12 @@ The following attributes are common to all asset types...
 	<tr>
 		<td>created_at</td>
 		<td>2009-01-01T06:01:18+0000</td>
-		<td>The timestamp indicating when the asset was originally created.</td>
+		<td>The timestamp indicating when the asset was originally created. This attribute cannot be set/updated directly.</td>
 	</tr>
 	<tr>
 		<td>updated_at</td>
 		<td>2009-01-02T06:10:51+0000</td>
-		<td>The timestamp indicating when the asset was last updated.</td>
+		<td>The timestamp indicating when the asset was last updated. This attribute cannot be set/updated directly.</td>
 	</tr>
 </table>
 
