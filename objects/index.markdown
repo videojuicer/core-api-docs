@@ -1,49 +1,29 @@
 Videojuicer Core Objects
 ========================
 
-Each request made by your application will address one main type of object from the following set.
+Each request made by your application will address one main type of object from the following set...
 
-Asset
------
+* [Asset][assets]: An audio, Flash, image, text or video file with associated lifecyle, ownership and licensing information. One asset may be derived from another by the Videojuicer transformation service through the use of a Preset.
 
-An audio, Flash, image, text or video file with associated lifecyle, ownership and licensing information. One asset may be derived from another by the Videojuicer transformation service through the use of a Preset.
+* [Campaign][campaigns]: A named collection of Campaign Policies.
 
-Campaign
---------
+* [Campaign Policy][campaign_policies]: A rule allowing the Videojuicer service to choose which Promo(s) (if any) to apply to a given set of Presentations (based on criteria such as the embedding site, the time/date and the end-user's location).
 
-A named collection of Campaign Policies.
+* [Criterion][criteria]: Collections of these allow a Campaign Policy to select the appropriate Promo for a given Presentation.
 
-Campaign Policy
----------------
+* [Presentation][presentations]: Various chunks of a SMIL document in their to-be-compiled state with some associated lifecycle, ownership and authoring information. The SMIL document will typically carry references to Videojuicer-hosted Assets. Code (and thumbnails) used in embedding Presentations can be accessed via the Videojuicer OEmbed endpoint.
 
-A rule allowing the Videojuicer service to choose which Promo(s) (if any) to apply to a given set of Presentations (based on criteria such as the embedding site, the time/date and the end-user's location).
+* [Preset][presets]: A bundle of transformation settings used to derive one Asset from another.
 
-Criterion
----------
+* [Promo][promos]: A particular Asset in the context of a given Campaign Policy along with it's role name (preroll, overlay_top_left, etc...) and an optional click-through URL.
 
-Collections of these allow a Campaign Policy to select the appropriate Promo for a given Presentation.
+* [User][users]: The personal details and credentials of a user of the system. Users can own other objects.
 
-Presentation
-------------
-
-Various chunks of a SMIL document in their to-be-compiled state with some associated lifecycle, ownership and authoring information. The SMIL document will typically carry references to Videojuicer-hosted Assets. Code (and thumbnails) used in embedding Presentations can be accessed via the Videojuicer OEmbed endpoint.
-
-Preset
-------
-
-A bundle of transformation settings used to derive one Asset from another.
-
-Promo
------
-
-A particular Asset in the context of a given Campaign Policy along with it's role name (preroll, overlay_top_left, etc...) and an optional click-through URL.
-
-Seed
-----
-
-The self-contained, secure repository in which all of the other objects listed on this page are stored.
-
-User
-----
-
-The personal details of a user of the system. Users can own other objects.
+[assets]: objects/asset.html
+[campaigns]: objects/campaign.html
+[campaign_policies]: objects/campaign_policy.html
+[criteria]: objects/criterion.html
+[presentations]: objects/presentation.html
+[presets]: objects/preset.html
+[promos]: objects/promo.html
+[users]: objects/user.html
