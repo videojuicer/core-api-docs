@@ -372,11 +372,11 @@ Whenever the in-player sharing features are used, it is actually this discovery 
 The discovery URL behaves as follows:
 
 * If the presentation has a callback_url set:
-** Users will be redirected to the callback_url
-** Search engines will be permanently redirected to the callback_url, ensuring that shared links still contribute to your page rankings.
-** Social networks searching for metadata will be presented with a specially-crafted page containing everything the social network needs to embed your presentation.
+	* Users will be redirected to the callback_url
+	* Search engines will be permanently redirected to the callback_url, ensuring that shared links still contribute to your page rankings.
+	* Social networks searching for metadata will be presented with a specially-crafted page containing everything the social network needs to embed your presentation.
 * If the presentation has *no* callback_url set:
-** The discovery URL will behave the same as above, but users visiting the page directly will be shown a very simple white page containing the embedded presentation.
+	* The discovery URL will behave the same as above, but users visiting the page directly will be shown a very simple white page containing the embedded presentation.
 
 Appendix A: Default SMIL document layout
 ----------------------------------------
