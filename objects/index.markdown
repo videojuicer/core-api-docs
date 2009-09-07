@@ -11,17 +11,17 @@ An audio, Flash, image, text or video file with associated lifecyle, ownership a
 Campaign
 --------
 
-A named, re-usable collection of Campaign Policies associating a set of Presentations with a series of Promos.
+A named collection of Campaign Policies.
 
 Campaign Policy
 ---------------
 
-A rule allowing the Videojuicer service to choose which Promo(s) (if any) to apply to the Presentations in a given Campaign (based on criteria such as the embedding site, the time/date and the end-user's location).
+A rule allowing the Videojuicer service to choose which Promo(s) (if any) to apply to a given set of Presentations (based on criteria such as the embedding site, the time/date and the end-user's location).
 
 Criterion
 ---------
 
-Collections of these allow a Campaign Policy to be selected.
+Collections of these allow a Campaign Policy to select the appropriate Promo for a given Presentation.
 
 Presentation
 ------------
