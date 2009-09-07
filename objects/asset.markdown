@@ -219,7 +219,7 @@ The REST endpoints for assets are type-specific. This is becase the unique ident
 	http://api.videojuicer.com/assets_text
 	http://api.videojuicer.com/assets_video
 
-Other than this specific consideration, REST requests / responses work exactly as described in [requests][requests].
+Other than this specific consideration, REST requests / responses work exactly as described in [requests][requests]...
 
 * create: POST file (and optionally the file_name, the various licensed_* attributes and a state_changed_url) to...
 	http://api.videojuicer.com/assets_audio.json?seed_name=myseed&api_version=1
