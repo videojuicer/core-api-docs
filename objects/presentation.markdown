@@ -101,7 +101,81 @@ Note that presentations, as embeddable objects, can return HTML or SMIL format r
 OEmbed Requests
 ---------------
 
-DGTODO: DOCUMENT WORKFLOW
+HTML Embed codes for individual presentations may be obtained by using the Videojuicer [OEmbed][oembed] endpoint. To obtain an embed code, first take the resource URL for the presentation you wish to embed:
+
+	http://api.videojuicer.com/presentations/47.json?seed_name=myseed&api_version=1
+	
+Once you have the presentation URL, build a request to the OEmbed endpoint:
+
+	http://api.videojuicer.com/oembed
+	
+Make sure to include the following parameters:
+
+<table>
+	<tr>
+		<th>Parameter</th>
+		<th>Example</th>
+		<th>Notes</th>
+	</tr>
+	<tr>
+		<td>url</td>
+		<td>http%3A%2F%2Fapi.videojuicer.com%2Fpresentations%2F47.json%3Fseed_name%3Dmyseed%26api_version%3D1</td>
+		<td>The CGI-escaped presentation URL</td>
+	</tr>
+	<tr>
+		<td>seed_name</td>
+		<td>myseed</td>
+		<td>As with all calls to the API, the seed_name is a required parameter.</td>
+	</tr>
+	<tr>
+		<td>api_version</td>
+		<td>1</td>
+		<td>As with all calls to the API, the api_version is a required parameter.</td>
+	</tr>
+	<tr>
+		<td>maxwidth</td>
+		<td>700</td>
+		<td>The maximum desired width for the returned embed code.</td>
+	</tr>
+	<tr>
+		<td>maxheight</td>
+		<td>700</td>
+		<td>The maximum desired height for the returned embed code.</td>
+	</tr>
+	<tr>
+		<td>format</td>
+		<td>json</td>
+		<td>Either "json" or "xml". The OEmbed output will be returned in the specified format.</td>
+	</tr>
+</table>
+
+A properly-created OEmbed URL will look something like:
+
+	http://api.videojuicer.com/oembed?format=json&seed_name=myseed&api_version=1&maxwidth=650&maxheight=400&url=http%3A%2F%2Fapi.videojuicer.com%2Fpresentations%2F47.json%3Fseed_name%3Dmyseed%26api_version%3D1
+	
+All responses from the OEmbed endpoint conform to the OEmbed 1.0 specification for the 'video' media type. The output for a call similar to the one outlined above will look like this:
+
+	{
+		"title": "Example presentation",
+		"abstract": "A longer description goes here.",
+		"type":"video",
+		"width": 650,
+		"height": 366,
+		"thumbnail_url":"http: / /thumbnails.videojuicer.com /demo /presentations /10.jpg?maxwidth=650&maxheight=400",
+		"thumbnail_width": 650,
+		"thumbnail_height": 366,
+		"provider_name": "Videojuicer",
+		"provider_url": "http://videojuicer.com",
+		"author_url":"http://videojuicer.com",
+		"author_name": "Dan Glegg",
+		"version": "1.0",
+		"cache_age": 43200,
+		"html": "<object width= "650 " height= "366 "> <param name= "movie " value= "http: / /player.videojuicer.com /bootstrap.swf "  /> <param name= "allowFullScreen " value= "true "  /> <param name= "allowscriptaccess " value= "always "  /> <param name= "FlashVars " value= "seed_name=demo&presentation_id=10 "  /> <embed src= "http: / /player.videojuicer.com /bootstrap.swf " type= "application /x-shockwave-flash " allowscriptaccess= "always " allowfullscreen= "true " FlashVars= "seed_name=demo&presentation_id=10 " width= "650 " height= "366 "  /> < /object> <a href= "http: / /api.videojuicer.com /presentations /10.html?seed_name=demo ">Example presentation on Videojuicer< /a>"
+	}
+	
+The "html" value is the embed code that may be distributed.
+
+[oembed]: http://oembed.com/
 
 Related Presentation Requests
 -----------------------------
