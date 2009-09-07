@@ -63,6 +63,11 @@ The following attributes are common to all asset types...
 		<td>If set, this URL will receive a GET request with parameters detailing the changed asset like this: '...change?seed_name=myseed&amp;asset_type=audio&amp;asset_id=12'. Maximum length 255 characters. (ATTRIBUTE TBC)</td>
 	</tr>
 	<tr>
+		<td>url</td>
+		<td>http://assets.videojuicer.com/myseed/7ce083ce-9b84-11de-87f0-001b63992574.jpg</td>
+		<td>The URL from which the asset data may be retrieved once the asset is in a 'ready' state. This attribute cannot be set/updated.</td>
+	</tr>
+	<tr>
 		<td>licensed_at</td>
 		<td>2009-01-02</td>
 		<td>An optional attribute to track when the asset was licensed under its current terms.</td>
