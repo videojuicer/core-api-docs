@@ -79,7 +79,7 @@ Note that the first user of a seed has both of the roles and that any user may h
 
 Role manipulation is achieved by POSTing the relevant role name (as a 'role' paramater) to...
 
-	http://api.videojuicer.com/users/add_role.json?seed_name=myseed&api_version=1 (ADD)
-	http://api.videojuicer.com/users/remove_role.json?seed_name=myseed&api_version=1 (REMOVE)
+	http://api.videojuicer.com/users/47/add_role.json?seed_name=myseed&api_version=1 (ADD)
+	http://api.videojuicer.com/users/47/remove_role.json?seed_name=myseed&api_version=1 (REMOVE)
 
 The responses from these requests are exactly as for a normal user GET request.
