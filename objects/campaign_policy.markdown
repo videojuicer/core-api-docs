@@ -1,10 +1,12 @@
 Campaign Policy Objects
 =======================
 
-[Campaigns][campaigns] are composed of campaign policy objects. These policies take a single [presentation][presentation] and apply a set of criteria to it in order to select the appropriate promo(s) (if any) to employ when buidling the its SMIL document.
+[Campaigns][campaigns] are composed of campaign policy objects. These policies take a single [presentation][presentations] and apply a set of [criteria][criteria] to it in order to select the appropriate [promo(s)][promos] (if any) to employ when buidling the its SMIL document.
 
 [campaigns]: objects/campaign.markdown
-[presentations]: objects/presentations.markdown
+[criteria]: objects/criterion.markdown
+[presentations]: objects/presentation.markdown
+[promos]: objects/promo.markdown
 
 Attributes
 ----------
