@@ -43,11 +43,6 @@ Seed
 
 The self-contained, secure repository in which all of the other objects listed on this page are stored.
 
-Tag
----
-
-A simple name associated with any other object on this list that supports tagging (see the individual documentation for each object to establish this support).
-
 User
 ----
 

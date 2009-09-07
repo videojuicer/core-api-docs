@@ -64,6 +64,11 @@ The following attributes encapsulate the non-document metadata about a presentat
 		<td>28</td>
 		<td>An optional attribute containing the ID of an asset to be used as a thumbnail. This must be set explicitly if a thumbnail is required.</td>
 	</tr>
+	<tr>
+		<td>tags</td>
+		<td>foo bar 'multi word'</td>
+		<td>The tags to applied to this presentation.</td>
+	</tr>
 </table>
 
 Additionally, a presentation contains attributes directly involved in rendering the requisite SMIL document. These are...
