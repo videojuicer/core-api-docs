@@ -1,6 +1,8 @@
 Videojuicer Core API
 ====================
 
+**Please note that this API documentation is an early release to accompany the Videojuicer closed beta. Although care has been taken to provide a reference that is as complete and accurate as possible, it is still likely to contain errors and omissions and is subject to extensive revision at this stage. If in doubt, contact support.**
+
 The Videojuicer core API is a RESTful interface to the [various objects][objects] modelled by the Videojuicer service. Through [requests][requests] made to this service, your application can build upon Videojuicer's scalable hosting, manipulation, selection, authorization, monetization and monitoring of on-line video and other digital assets.
 
 [objects]: objects/index.html
