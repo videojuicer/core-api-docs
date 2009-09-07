@@ -3,9 +3,9 @@ Criterion Objects
 
 An individual [campaign policy][campaign_policies] uses one or more criterion objects in selecting the appropriate [promo(s)][promos] (if any) to associate with a given [presentation][presentations].
 
-[campaign_policies]: objects/campaign_policy.markdown
-[presentations]: objects/presentation.markdown
-[promos]: objects/promo.markdown
+[campaign_policies]: objects/campaign_policy.html
+[presentations]: objects/presentation.html
+[promos]: objects/promo.html
 
 Multiple types of criteria exist to support different matching scenarios...
 
