@@ -56,8 +56,8 @@ The following attributes encapsulate the non-document metadata about a presentat
 	</tr>
 	<tr>
 		<td>callback_url</td>
-		<td>DGTODO: EXAMPLE URL</td>
-		<td>An optional attribute containing an external service URL used for both visitor redirects and event callbacks. DGTODO: ONE SENTENCE WORKFLOW SUMMARY.</td>
+		<td>http://myproduct.com</td>
+		<td>The URL to which you'd like viewers to be sent when the presentation stage is clicked.</td>
 	</tr>
 	<tr>
 		<td>image_asset_id</td>
@@ -356,8 +356,27 @@ Therefore the simplest possible playable presentation can be created by followin
 [liquid]: http://www.liquidmarkup.org/
 [promo_roles]: http://TODO
 
-TODO: How to mock request properties for purposes of promo rendering
-TODO: Fix link to promo role values
+Sharing presentations to social networks
+----------------------------------------
+
+By default, the Videojuicer player allows users to share presentations through a number of social networks including Facebook. If your custom application has a special workflow for sharing presentations, then you should read the following best practice passages for taking advantage of Videojuicer's social integration features. 
+
+In most cases, all that a social network requires in order to share any item with another user is a URL to which the user's friends will be linked. Further to this, many social networks such as Facebook, Digg, and Reddit actually inspect pages when they are shared, attempting to grab useful data such as thumbnails and, in our case, embed codes for video.
+
+For this reason, the core API offers a _discovery URL_ for each presentation:
+
+	http://api.videojuicer.com/presentations/10.html?seed_name=myseed
+	
+Whenever the in-player sharing features are used, it is actually this discovery URL that is shared with the social networks. It is recommended that whenever you wish to link to a presentation in a sharable fashion, you give out the discovery URL rather than the URL of a page where you have previously embedded the presentation.
+
+The discovery URL behaves as follows:
+
+* If the presentation has a callback_url set:
+** Users will be redirected to the callback_url
+** Search engines will be permanently redirected to the callback_url, ensuring that shared links still contribute to your page rankings.
+** Social networks searching for metadata will be presented with a specially-crafted page containing everything the social network needs to embed your presentation.
+* If the presentation has *no* callback_url set:
+** The discovery URL will behave the same as above, but users visiting the page directly will be shown a very simple white page containing the embedded presentation.
 
 Appendix A: Default SMIL document layout
 ----------------------------------------
@@ -427,3 +446,6 @@ Appendix A: Default SMIL document layout
       </par>
     </body>
 	</smil>
+
+TODO: How to mock request properties for purposes of promo rendering
+TODO: Fix link to promo role values
