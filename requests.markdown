@@ -39,7 +39,7 @@ The URLs for all RESTful requests follow a common convention (and always specify
 	</tr>
 </table>
 
-Many browsers and gateways have limited HTTP verb support (particularly where PUT and DELETE are concerned). In order to overcome these limitations, requests may include an '_method' parameter to simulate the necessary verb.
+Many browsers and gateways have limited HTTP verb support (particularly where PUT and DELETE are concerned). In order to overcome these limitations, requests may include an '_method' parameter (either in the form or as part of the URL) to simulate the necessary verb.
 
 Since they modify an object, create, update and delete actions will need to made as [authenticated requests][authenticated_requests]. This also applies to read requests that access objects with some degree of privacy or those requests that need access to attributes not normally vended to the public at large (such as the publishing dates on a presentation).
 
