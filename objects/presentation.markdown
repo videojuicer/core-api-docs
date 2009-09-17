@@ -111,7 +111,7 @@ Armed with this URL, build a request to the OEmbed endpoint...
 	
 ...ensuring that the following parameters are included...
 
-* url: a CGI-escaped version of the presentation URL (above)
+* url: a URI-escaped version of the presentation URL (above)
 * maxwidth: the maximum desired width for the embedded presentation's thumbnail (if available)
 * maxheight: the maximum desired height for the embedded presentation's thumbnail (if available)
 * format: the required response format (either 'json' or 'xml)
