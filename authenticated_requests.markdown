@@ -64,9 +64,9 @@ Now that your application is in possession of an authorized access token, the pr
 			"seed_name=myseed"
 		]
 		signature_base_string = [
-			URI.escape("POST"),
-			URI.escape("http://api.videojuicer.com/presentations.json"),
-			URI.escape(normalized_params.sort.join("&"))
+			CGI.escape("POST"),
+			CGI.escape("http://api.videojuicer.com/presentations.json"),
+			CGI.escape(normalized_params.sort.join("&")).gsub('+', '%20')
 		].join("&")
 		signature_secret = "my_consumer_secret&authorized_token_secret"
 		signature_octet = HMAC::SHA1.digest(signature_secret, signature_base_string)
