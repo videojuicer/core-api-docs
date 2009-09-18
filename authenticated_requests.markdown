@@ -84,6 +84,9 @@ Now that your application is in possession of an authorized access token, the pr
 
 [oauth_spec]: http://oauth.net/core/1.0a
 
+**Virtual Methods**
+When simulating a PUT or DELETE request using the '_method' parameter in a POST, the signature base string's first component should be the natural verb of the request (i.e. POST) and the '_method=PUT' parameter should be included in the normalized_params.
+
 Permissions
 -----------
 
