@@ -239,13 +239,27 @@ Derivation Request
 
 The Videojuicer service offers the ability to transform assets on your behalf, transcoding a video file or extracting the audio track from a video and so on. Before your application can request a derived asset, it must first have knowledge of two objects...
 
-* a valid original asset (specifically its ID)
+* a valid original asset
 * a valid [preset][preset]
 
-To request a derived asset, simple POST the preset ID to the original asset's end point...
+To request a derived asset, simply POST the preset_id to the original asset's end point...
 
 	http://api.videojuicer.com/assets/audio/47.json?seed_name=myseed&api_version=1
 	
 Assuming that the original asset and the specified preset both exist _and_ do not (in combination) imply an unsupported transformation, a new asset will be created and returned (with the usual 'pending' state). The backend transformation pipeline will then activate and deliver the derived asset's data as quickly as possible, updating the asset's state as it goes (see 'Lifecycle' above).
 
 Note that future support is planned for the ability to crop the source in height, width and time (as appropriate) but that this feature is currently unavailable.
+
+Externally Derived Assets
+-------------------------
+
+In order to support the scenario whereby derived versions of an asset are created externally and then imported (without recourse to the Videojuicer transformation service), it is possible to mark an asset as being derived from another explicitly. In order to achieve this, your application must have knowledge of three objects...
+
+* two valid assets (to act as 'original' and 'derived')
+* a valid [preset][preset] (i.e. that which would have been used had this been a standard derivation request - see above)
+
+To mark an asset as derived, POST the preset_id, original_asset_type ('audio', 'flash', ...) and original_asset_id to the to-be-marked asset's set_derived URL...
+
+	http://api.videojuicer.com/assets/audio/set_derived/47.json?seed_name=myseed&api_version=1
+
+As with standard derivation requests (see above) this request does require that both the assets and the preset exist. What it will not do is check whether the combination of these three objects implies an otherwise unsupported transformation - this is for your application to decide.
