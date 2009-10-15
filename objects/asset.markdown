@@ -60,7 +60,7 @@ The following attributes are common to all asset types...
 	<tr>
 		<td>state_changed_url</td>
 		<td>http://api.example.com/process_asset_change</td>
-		<td>If set, this URL will receive a GET request with parameters detailing the changed asset like this: '...change?seed_name=myseed&amp;asset_type=audio&amp;asset_id=12'. Maximum length 255 characters. (ATTRIBUTE TBC)</td>
+		<td>If set, this URL will receive a GET request with parameters detailing the changed asset like this: '...change?seed_name=myseed&amp;asset_type=audio&amp;asset_id=12'. Maximum length 255 characters.</td>
 	</tr>
 	<tr>
 		<td>url</td>
