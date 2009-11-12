@@ -64,8 +64,13 @@ The following attributes are common to all asset types...
 	</tr>
 	<tr>
 		<td>url</td>
+		<td>rtmp://vjuicerfvs.cdnetworks.net/vjuicerfvs/flashstream/mp4:assets.videojuicer.com/myseed/fa52f05e-cf81-11de-8413-0026bbfffe51.mp4</td>
+		<td>The URL from which the asset data may be streamed once it is in a 'ready' state. Note that this may be an RTMP or HTTP URL for video and audio streams. This attribute cannot be set/updated.</td>
+	</tr>
+	<tr>
+		<td>http_url</td>
 		<td>http://assets.videojuicer.com/myseed/7ce083ce-9b84-11de-87f0-001b63992574.jpg</td>
-		<td>The URL from which the asset data may be retrieved once the asset is in a 'ready' state. This attribute cannot be set/updated.</td>
+		<td>A HTTP URL from which the asset data may be retrieved once the asset is in a 'ready' state. This may have the same value as the previous url attribute. This attribute cannot be set/updated.</td>
 	</tr>
 	<tr>
 		<td>licensed_at</td>
