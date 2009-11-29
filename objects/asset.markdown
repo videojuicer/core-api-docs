@@ -3,11 +3,12 @@ Asset Objects
 
 Asset objects encapsulate and describe the raw file data used in [presentations][presentation]. The specific asset types available are...
 
-* audio
-* Flash
-* image
-* text
-* video
+* audio (aiff, mp3, ...)
+* document (js, smil, xml, ...)
+* flash (swf, ...)
+* image (jpg, png, ...)
+* text (css, html, txt, ...)
+* video (flv, mp4, ...)
 
 Assets are created either by uploading some file data or by requesting that a new asset be 'derived' from an existing one. Note that the creation of a non-derived asset is thus the only request with which it is valid to provide file data.
 
@@ -219,6 +220,7 @@ RESTful Requests
 The REST endpoints for assets are type-specific. This is becase the unique identifier for an asset within a seed is the combination of its type _and_ its ID. Thus the lead portion of the URLs for each type are of this form...
 
 	http://api.videojuicer.com/assets/audio
+	http://api.videojuicer.com/assets/document
 	http://api.videojuicer.com/assets/flash
 	http://api.videojuicer.com/assets/image
 	http://api.videojuicer.com/assets/text
