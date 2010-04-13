@@ -98,6 +98,64 @@ Note that presentations, as embeddable objects, can return HTML or SMIL format r
 [requests]: requests.html
 [query_requests]: query_requests.html
 
+Special Response Behaviour
+--------------------------
+
+Because presentations are synonymous with content as far as players are concerned, presentation GET requests prompt a richer set of response codes and messages than other objects...
+
+<table>
+	<tr>
+		<th>Privacy</th>
+		<th>Readiness</th>
+		<th>XML/JSON/YAML (unauth)</th>
+		<th>HTML (unauth)</th>
+		<th>SMIL (unauth)</th>
+		<th>XML/JSON/YAML (auth)</th>
+		<th>HTML (auth)</th>
+		<th>SMIL (auth)</th>
+	</tr>
+	<tr>
+		<td>private</td>
+		<td>pending</td>
+		<td>403 Forbidden: error description</td>
+		<td>403 Forbidden: player page with a 'private content' warning</td>
+		<td>403 Forbidden: error description</td>
+		<td>409 State Conflict: marshalled presentation</td>
+		<td>409 State Conflict: player page with a 'pending content' warning</td>
+		<td>200 OK: rendered SMIL ('pending content' asset)</td>
+	</tr>
+	<tr>
+		<td>private</td>
+		<td>ready</td>
+		<td>403 Forbidden: error description</td>
+		<td>403 Forbidden: player page with a 'private content' warning</td>
+		<td>403 Forbidden: error description</td>
+		<td>200 OK: marshalled presentation</td>
+		<td>200 OK: player page</td>
+		<td>200 OK: rendered SMIL</td>
+	</tr>
+	<tr>
+		<td>public</td>
+		<td>pending</td>
+		<td>409 State Conflict: marshalled presentation</td>
+		<td>409 State Conflict: player page with a 'pending content' warning</td>
+		<td>200 OK: rendered SMIL</td>
+		<td>409 State Conflict: marshalled presentation</td>
+		<td>409 State Conflict: player page with a 'pending content' warning</td>
+		<td>200 OK: rendered SMIL ('pending content' asset)</td>
+	</tr>
+	<tr>
+		<td>public</td>
+		<td>ready</td>
+		<td>200 OK: marshalled presentation</td>
+		<td>200 OK: player page</td>
+		<td>200 OK: rendered SMIL</td>
+		<td>200 OK: marshalled presentation</td>
+		<td>200 OK: player page</td>
+		<td>200 OK: rendered SMIL</td>
+	</tr>
+</table>
+
 OEmbed Requests
 ---------------
 
